@@ -1,85 +1,55 @@
-# 🎨 CodeCraftHub Dashboard (Frontend)
+# CodeCraftHub: Your Learning Management Platform - Frontend Dashboard
 
-This is the administrative dashboard UI for the **CodeCraftHub: Personalized Learning Platform**. Built with modern semantic HTML5, custom CSS3 design tokens with dark-mode glassmorphic styling, and vanilla JavaScript (ES6+), it provides a complete single-page application (SPA) to manage course listings via REST API integration.
+A functional Single-Page Application (SPA) course management interface built with semantic HTML, CSS, and vanilla JavaScript (no frameworks like React or Bootstrap).
 
-It satisfies all specifications of **Part 2** in `instructions.pdf` and is formatted as a complete single-file dashboard ready for direct submission to the **Mark** auto-grader tool.
+This dashboard fulfills all requirements from **`lab-instructions-frontend.md`** and is formatted as a single self-contained HTML file ([`index.html`](./index.html)) ready for submission to the **Mark** auto-grader tool in IBM Skills Network.
 
----
+## Features
 
-## 🌟 Dashboard Capabilities
+- **Full CRUD Course Operations via REST API**:
+  - **Create**: Add new courses with `name`, `description`, `target_date`, and `status`.
+  - **Read**: Display all courses in an interactive responsive Card view or Table view.
+  - **Update**: Edit existing courses inline or with pre-filled form.
+  - **Delete**: Remove courses with confirmation dialog.
+- **Top Add Course Form**: Dedicated form at the top of the page with all required fields.
+- **Real-Time Search & Filtering**: Live search and status filtering (`Not Started`, `In Progress`, `Completed`).
+- **Live Statistics**: Summary boxes for Total Courses, Not Started, In Progress, and Completed.
+- **Design Tokens**: Professional purple/amber theme adhering to lab specifications:
+  - `#8B5CF6` for primary
+  - `#F59E0B` for success / warning
+  - `#EF4444` for delete
+- **Auto-Detection for Backend API**: Connects automatically to `http://localhost:5000` or fallback port `http://localhost:5001`.
+- **Loading & Notifications**: Visual loading spinner and animated feedback alerts for all operations.
 
-- **Complete CRUD Management**:
-  - **Create**: Add new courses with full input validation and status enum selector.
-  - **Read**: View course listings with dynamic card grids or tabular view.
-  - **Update**: Edit existing course metadata, durations, pricing, categories, and publication statuses.
-  - **Delete**: Safe delete operations with confirmation modal.
-- **Dynamic Stats Bar**: Live KPI metrics (Total Courses, Published Courses, Drafts, Archived, Active Instructors) populated from `/api/stats`.
-- **Search & Filtering**:
-  - Live instantaneous search across course title, description, instructor, and category.
-  - Multi-criteria filtering by **Category** and **Status Enum** (`Published`, `Draft`, `Archived`).
-  - Reset filters button.
-- **View Toggle**: Switch effortlessly between a responsive **Grid Card View** and a detailed **Table View**.
-- **Real-Time API Health Badge**: Live indicator displaying backend connectivity status with a configuration modal to change the backend API base URL at runtime.
-- **Feedback & Notifications**: Non-intrusive floating toast notifications for success and error states.
-- **AI Auto-Grader Compatibility**: Self-contained `index.html` file designed for seamless grading in the IBM Skills Network / Mark grading platform.
+## Running the Dashboard Locally
 
----
-
-## 🚀 Running the Frontend Locally
-
-You have two convenient ways to run the frontend:
-
-### Method 1: Using the Built-in Node.js Static Server (Recommended)
-
-1. Open your terminal and navigate to the `frontend` folder:
-   ```bash
-   cd frontend
-   ```
-2. Start the local server:
-   ```bash
-   npm start
-   ```
-3. Open your browser at:
-   ```
-   http://localhost:3000
-   ```
-
----
-
-### Method 2: Direct File Open (Zero Server Needed)
-
-Since `index.html` is completely self-contained with embedded CSS and JavaScript, you can open it directly in your browser:
-
-- **macOS**:
-  ```bash
-  open frontend/index.html
-  ```
-- **Or**: Simply double-click `index.html` in your file explorer / Finder.
-
-> **Note**: Ensure the backend server is running at `http://localhost:5001` (or update the URL via the API status pill at the top right of the dashboard).
-
----
-
-## 🔌 Connecting to the Backend API
-
-By default, the dashboard connects to:
+### Option 1: Built-in Static Server (Recommended)
+```bash
+cd frontend
+npm start
 ```
-http://localhost:5001
+Open your browser at:
+```
+http://localhost:3000
 ```
 
-If your backend is running on a different port:
-1. Click the **API Connected / Disconnected** badge in the top-right navbar.
-2. Enter the new URL (e.g., `http://localhost:5002`).
-3. Click **Save & Reconnect**. The setting is automatically saved in your browser's `localStorage`.
+### Option 2: Direct File Open
+You can open `frontend/index.html` directly in any web browser without needing a server:
+```bash
+open frontend/index.html
+```
 
----
+## Connecting to Backend API
 
-## 📝 Assessment Submission (Tool: Mark)
+The default Base API URL is:
+```
+http://localhost:5000/api/courses
+```
+If your backend is running on an alternate port (such as `http://localhost:5001`), the dashboard will automatically detect it, or you can click the connection status pill in the header to set the URL manually.
 
-As outlined in the course instructions:
-> *"For your final assessment, you will submit the HTML code you provided to Bolt to create the CodeCraftHub dashboard to be auto-graded by AI using a tool called Mark."*
+## Assessment Submission (Mark Tool)
 
-To submit:
+For your final assessment:
 1. Open [`frontend/index.html`](./index.html).
-2. Copy the entire file content.
-3. Paste it directly into the submission box in your course platform for grading.
+2. Copy the entire file or relevant code snippets as requested in your course submission portal.
+3. Paste into the submission box for auto-grading by Mark.

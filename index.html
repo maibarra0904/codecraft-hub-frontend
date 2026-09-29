@@ -3,51 +3,54 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CodeCraftHub - Personalized Learning Platform Admin Dashboard</title>
+  <title>CodeCraftHub: Your Learning Management Platform</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   
   <style>
     /* ==========================================================================
-       CSS Variables & Design System (CodeCraftHub Dark Modern Theme)
+       CSS Variables & Design System
+       Theme Colors per Lab Spec:
+       - Primary: #8B5CF6 (Purple)
+       - Success: #F59E0B (Amber)
+       - Delete:  #EF4444 (Red)
        ========================================================================== */
     :root {
-      --bg-primary: #0a0e17;
-      --bg-secondary: #111827;
-      --bg-card: rgba(17, 24, 39, 0.75);
-      --bg-card-hover: rgba(31, 41, 55, 0.85);
-      --bg-input: #1f2937;
-      --border-color: rgba(255, 255, 255, 0.08);
-      --border-focus: #6366f1;
+      --primary: #8B5CF6;
+      --primary-hover: #7C3AED;
+      --primary-light: rgba(139, 92, 246, 0.15);
       
-      --text-primary: #f9fafb;
-      --text-secondary: #9ca3af;
-      --text-muted: #6b7280;
+      --success: #F59E0B;
+      --success-hover: #D97706;
+      --success-light: rgba(245, 158, 11, 0.15);
       
-      --primary: #6366f1;
-      --primary-hover: #4f46e5;
-      --primary-light: rgba(99, 102, 241, 0.15);
-      
-      --success: #10b981;
-      --success-light: rgba(16, 185, 129, 0.15);
-      --warning: #f59e0b;
-      --warning-light: rgba(245, 158, 11, 0.15);
-      --danger: #ef4444;
-      --danger-hover: #dc2626;
+      --danger: #EF4444;
+      --danger-hover: #DC2626;
       --danger-light: rgba(239, 68, 68, 0.15);
-      --info: #0ea5e9;
-      --info-light: rgba(14, 165, 233, 0.15);
+
+      --info: #3B82F6;
+      --info-light: rgba(59, 130, 246, 0.15);
       
-      --radius-sm: 8px;
-      --radius-md: 12px;
-      --radius-lg: 16px;
+      --bg-primary: #0F172A;
+      --bg-secondary: #1E293B;
+      --bg-card: rgba(30, 41, 59, 0.85);
+      --bg-input: #0F172A;
+      --border-color: rgba(255, 255, 255, 0.1);
+      
+      --text-primary: #F8FAFC;
+      --text-secondary: #94A3B8;
+      --text-muted: #64748B;
+      
+      --radius-sm: 6px;
+      --radius-md: 10px;
+      --radius-lg: 14px;
       --radius-full: 9999px;
       
-      --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.25);
-      --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.35), 0 2px 4px -1px rgba(0, 0, 0, 0.25);
-      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5), 0 4px 6px -2px rgba(0, 0, 0, 0.3);
-      --shadow-glow: 0 0 25px rgba(99, 102, 241, 0.25);
+      --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
+      --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4);
+      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
+      --shadow-glow: 0 0 20px rgba(139, 92, 246, 0.3);
       
       --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
     }
@@ -64,82 +67,72 @@
       color: var(--text-primary);
       min-height: 100vh;
       line-height: 1.5;
+      padding: 24px 16px;
       background-image: 
-        radial-gradient(circle at 15% 15%, rgba(99, 102, 241, 0.08) 0%, transparent 40%),
-        radial-gradient(circle at 85% 85%, rgba(16, 185, 129, 0.06) 0%, transparent 40%);
+        radial-gradient(circle at 10% 10%, rgba(139, 92, 246, 0.1) 0%, transparent 45%),
+        radial-gradient(circle at 90% 90%, rgba(245, 158, 11, 0.08) 0%, transparent 45%);
       background-attachment: fixed;
     }
 
-    /* Container */
     .container {
-      max-width: 1320px;
+      max-width: 1200px;
       margin: 0 auto;
-      padding: 24px;
     }
 
-    /* Header / Navbar */
-    header.navbar {
+    /* Header */
+    header.header {
+      background: var(--bg-card);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 20px 28px;
+      margin-bottom: 24px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 18px 28px;
-      background: var(--bg-card);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border: 1px solid var(--border-color);
-      border-radius: var(--radius-lg);
-      margin-bottom: 28px;
       box-shadow: var(--shadow-md);
+      flex-wrap: wrap;
+      gap: 16px;
     }
 
-    .brand {
+    .header-branding {
       display: flex;
       align-items: center;
       gap: 14px;
-      text-decoration: none;
-      color: inherit;
     }
 
-    .brand-icon {
+    .header-icon {
       width: 44px;
       height: 44px;
-      background: linear-gradient(135deg, #6366f1, #8b5cf6);
+      background: linear-gradient(135deg, var(--primary), #6D28D9);
       border-radius: var(--radius-md);
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 4px 12px rgba(99, 102, 241, 0.4);
+      box-shadow: 0 4px 12px rgba(139, 92, 246, 0.4);
     }
 
-    .brand-icon svg {
+    .header-icon svg {
       width: 24px;
       height: 24px;
       color: #fff;
     }
 
-    .brand-text h1 {
-      font-size: 1.25rem;
+    h1.header-title {
+      font-size: 1.35rem;
       font-weight: 800;
       letter-spacing: -0.02em;
-      background: linear-gradient(90deg, #fff, #cbd5e1);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+      color: #fff;
     }
 
-    .brand-text p {
-      font-size: 0.75rem;
+    .header-subtitle {
+      font-size: 0.8rem;
       color: var(--text-secondary);
       font-weight: 500;
     }
 
-    .navbar-actions {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-    }
-
-    /* API Status Pill */
-    .api-status-badge {
+    .api-status-pill {
       display: inline-flex;
       align-items: center;
       gap: 8px;
@@ -151,10 +144,12 @@
       font-weight: 600;
       cursor: pointer;
       transition: var(--transition);
+      color: var(--text-secondary);
     }
 
-    .api-status-badge:hover {
+    .api-status-pill:hover {
       border-color: var(--primary);
+      color: var(--text-primary);
     }
 
     .status-dot {
@@ -165,13 +160,152 @@
     }
 
     .status-dot.online {
-      background: var(--success);
-      box-shadow: 0 0 8px var(--success);
+      background: #10B981;
+      box-shadow: 0 0 8px #10B981;
     }
 
     .status-dot.offline {
       background: var(--danger);
       box-shadow: 0 0 8px var(--danger);
+    }
+
+    /* Notification Banner (Alerts) */
+    .alert-container {
+      margin-bottom: 20px;
+    }
+
+    .alert {
+      padding: 14px 18px;
+      border-radius: var(--radius-md);
+      font-size: 0.875rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 10px;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .alert.success {
+      background: var(--success-light);
+      border: 1px solid rgba(245, 158, 11, 0.4);
+      color: #FCD34D;
+    }
+
+    .alert.error {
+      background: var(--danger-light);
+      border: 1px solid rgba(239, 68, 68, 0.4);
+      color: #FCA5A5;
+    }
+
+    .alert.info {
+      background: var(--primary-light);
+      border: 1px solid rgba(139, 92, 246, 0.4);
+      color: #C4B5FD;
+    }
+
+    .alert-close {
+      background: none;
+      border: none;
+      color: inherit;
+      cursor: pointer;
+      font-size: 1.1rem;
+      line-height: 1;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Add / Edit Course Form at the Top */
+    .form-card {
+      background: var(--bg-card);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      margin-bottom: 24px;
+      box-shadow: var(--shadow-md);
+    }
+
+    .form-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 18px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .form-card-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .form-card-title svg {
+      color: var(--primary);
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .form-group.full-width {
+      grid-column: 1 / -1;
+    }
+
+    .form-group label {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+    }
+
+    .form-group label .required {
+      color: var(--danger);
+    }
+
+    .form-input, .form-textarea, .form-select {
+      width: 100%;
+      padding: 10px 14px;
+      background: var(--bg-input);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      color: var(--text-primary);
+      font-size: 0.875rem;
+      font-family: inherit;
+      outline: none;
+      transition: var(--transition);
+    }
+
+    .form-textarea {
+      resize: vertical;
+      min-height: 80px;
+    }
+
+    .form-input:focus, .form-textarea:focus, .form-select:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.25);
+    }
+
+    .form-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 12px;
+      margin-top: 18px;
     }
 
     /* Buttons */
@@ -180,38 +314,37 @@
       align-items: center;
       justify-content: center;
       gap: 8px;
-      padding: 10px 18px;
+      padding: 10px 20px;
       font-size: 0.875rem;
       font-weight: 600;
       border-radius: var(--radius-md);
       border: 1px solid transparent;
       cursor: pointer;
       transition: var(--transition);
-      text-decoration: none;
       user-select: none;
     }
 
     .btn-primary {
-      background: linear-gradient(135deg, #6366f1, #4f46e5);
+      background: var(--primary);
       color: #fff;
-      box-shadow: 0 4px 14px rgba(99, 102, 241, 0.35);
+      box-shadow: 0 4px 12px rgba(139, 92, 246, 0.35);
     }
 
     .btn-primary:hover {
-      background: linear-gradient(135deg, #4f46e5, #4338ca);
+      background: var(--primary-hover);
       box-shadow: var(--shadow-glow);
       transform: translateY(-1px);
     }
 
     .btn-secondary {
-      background: var(--bg-input);
+      background: var(--bg-secondary);
       color: var(--text-primary);
       border: 1px solid var(--border-color);
     }
 
     .btn-secondary:hover {
       background: rgba(255, 255, 255, 0.08);
-      border-color: rgba(255, 255, 255, 0.16);
+      border-color: rgba(255, 255, 255, 0.2);
     }
 
     .btn-danger {
@@ -229,166 +362,87 @@
       border-radius: var(--radius-sm);
     }
 
-    .btn-icon {
-      padding: 8px;
-      border-radius: var(--radius-md);
-      background: var(--bg-input);
-      border: 1px solid var(--border-color);
-      color: var(--text-secondary);
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      transition: var(--transition);
-    }
-
-    .btn-icon:hover {
-      color: var(--text-primary);
-      border-color: var(--primary);
-    }
-
-    /* KPI / Stats Grid */
-    .stats-grid {
+    /* Stats summary strip */
+    .stats-strip {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-      gap: 18px;
-      margin-bottom: 28px;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 14px;
+      margin-bottom: 24px;
     }
 
-    .stat-card {
+    .stat-box {
       background: var(--bg-card);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
       border: 1px solid var(--border-color);
-      border-radius: var(--radius-lg);
-      padding: 20px;
-      box-shadow: var(--shadow-sm);
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      transition: var(--transition);
-    }
-
-    .stat-card:hover {
-      transform: translateY(-2px);
-      border-color: rgba(255, 255, 255, 0.16);
-      box-shadow: var(--shadow-md);
-    }
-
-    .stat-icon-wrapper {
-      width: 48px;
-      height: 48px;
       border-radius: var(--radius-md);
+      padding: 16px;
       display: flex;
       align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
+      justify-content: space-between;
     }
 
-    .stat-icon-wrapper.indigo { background: var(--primary-light); color: var(--primary); }
-    .stat-icon-wrapper.emerald { background: var(--success-light); color: var(--success); }
-    .stat-icon-wrapper.amber { background: var(--warning-light); color: var(--warning); }
-    .stat-icon-wrapper.slate { background: rgba(148, 163, 184, 0.15); color: #94a3b8; }
-    .stat-icon-wrapper.cyan { background: var(--info-light); color: var(--info); }
-
-    .stat-content h3 {
-      font-size: 1.6rem;
-      font-weight: 800;
-      line-height: 1.1;
-      letter-spacing: -0.02em;
-    }
-
-    .stat-content p {
-      font-size: 0.8rem;
+    .stat-box-content p {
+      font-size: 0.75rem;
       color: var(--text-secondary);
       font-weight: 500;
-      margin-top: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
     }
 
-    /* Dashboard Action Bar (Search & Filters) */
-    .action-bar {
+    .stat-box-content h3 {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: #fff;
+      margin-top: 2px;
+    }
+
+    /* Course List Controls & View Switcher */
+    .list-controls {
       display: flex;
-      flex-wrap: wrap;
       justify-content: space-between;
       align-items: center;
-      gap: 16px;
-      background: var(--bg-card);
-      backdrop-filter: blur(12px);
-      border: 1px solid var(--border-color);
-      border-radius: var(--radius-lg);
-      padding: 16px 20px;
-      margin-bottom: 24px;
-      box-shadow: var(--shadow-sm);
-    }
-
-    .search-filter-group {
-      display: flex;
       flex-wrap: wrap;
-      align-items: center;
-      gap: 12px;
-      flex: 1;
-      min-width: 280px;
+      gap: 14px;
+      margin-bottom: 20px;
     }
 
-    .search-input-wrapper {
+    .list-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .search-filter-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .search-box {
       position: relative;
-      flex: 1;
       min-width: 220px;
     }
 
-    .search-icon {
+    .search-box input {
+      padding: 8px 12px 8px 34px;
+      font-size: 0.85rem;
+    }
+
+    .search-box svg {
       position: absolute;
-      left: 14px;
+      left: 10px;
       top: 50%;
       transform: translateY(-50%);
       color: var(--text-muted);
       pointer-events: none;
     }
 
-    .input-field {
-      width: 100%;
-      padding: 10px 14px 10px 40px;
-      background: var(--bg-input);
-      border: 1px solid var(--border-color);
-      border-radius: var(--radius-md);
-      color: var(--text-primary);
-      font-size: 0.875rem;
-      font-family: inherit;
-      outline: none;
-      transition: var(--transition);
-    }
-
-    .input-field:focus {
-      border-color: var(--border-focus);
-      box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
-    }
-
-    .select-field {
-      padding: 10px 16px;
-      background: var(--bg-input);
-      border: 1px solid var(--border-color);
-      border-radius: var(--radius-md);
-      color: var(--text-primary);
-      font-size: 0.875rem;
-      font-family: inherit;
-      outline: none;
-      cursor: pointer;
-      transition: var(--transition);
-    }
-
-    .select-field:focus {
-      border-color: var(--border-focus);
-      box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
-    }
-
     .view-toggles {
       display: flex;
-      align-items: center;
       background: var(--bg-input);
       border: 1px solid var(--border-color);
       border-radius: var(--radius-md);
       padding: 3px;
-      gap: 2px;
     }
 
     .toggle-btn {
@@ -398,9 +452,9 @@
       color: var(--text-muted);
       border-radius: var(--radius-sm);
       cursor: pointer;
-      transition: var(--transition);
       display: flex;
       align-items: center;
+      transition: var(--transition);
     }
 
     .toggle-btn.active {
@@ -411,8 +465,8 @@
     /* Course Cards Grid */
     .courses-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
-      gap: 24px;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 20px;
     }
 
     .course-card {
@@ -421,139 +475,114 @@
       -webkit-backdrop-filter: blur(12px);
       border: 1px solid var(--border-color);
       border-radius: var(--radius-lg);
-      padding: 24px;
-      box-shadow: var(--shadow-sm);
+      padding: 22px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+      box-shadow: var(--shadow-sm);
       transition: var(--transition);
-      position: relative;
-      overflow: hidden;
     }
 
     .course-card:hover {
       transform: translateY(-3px);
-      border-color: rgba(99, 102, 241, 0.4);
-      box-shadow: 0 12px 24px -6px rgba(0, 0, 0, 0.45);
+      border-color: rgba(139, 92, 246, 0.4);
+      box-shadow: var(--shadow-lg);
     }
 
-    .card-top {
+    .card-meta-top {
       display: flex;
       justify-content: space-between;
-      align-items: flex-start;
-      margin-bottom: 14px;
-      gap: 12px;
+      align-items: center;
+      margin-bottom: 12px;
     }
 
-    .category-chip {
+    .course-id-badge {
+      font-family: 'JetBrains Mono', monospace;
       font-size: 0.75rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
-      color: #818cf8;
-      background: rgba(99, 102, 241, 0.12);
-      padding: 4px 10px;
-      border-radius: var(--radius-full);
-      border: 1px solid rgba(99, 102, 241, 0.25);
+      color: var(--text-muted);
+      background: rgba(255, 255, 255, 0.05);
+      padding: 2px 8px;
+      border-radius: var(--radius-sm);
     }
 
     /* Status Badges */
     .status-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
       font-size: 0.75rem;
       font-weight: 700;
       padding: 4px 10px;
       border-radius: var(--radius-full);
-      text-transform: capitalize;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
     }
 
-    .status-badge.published {
-      background: var(--success-light);
-      color: #34d399;
-      border: 1px solid rgba(16, 185, 129, 0.3);
-    }
-
-    .status-badge.draft {
-      background: var(--warning-light);
-      color: #fbbf24;
-      border: 1px solid rgba(245, 158, 11, 0.3);
-    }
-
-    .status-badge.archived {
+    .status-badge.not-started {
       background: rgba(148, 163, 184, 0.15);
-      color: #94a3b8;
+      color: #94A3B8;
       border: 1px solid rgba(148, 163, 184, 0.3);
+    }
+
+    .status-badge.in-progress {
+      background: var(--success-light);
+      color: var(--success);
+      border: 1px solid rgba(245, 158, 11, 0.4);
+    }
+
+    .status-badge.completed {
+      background: rgba(16, 185, 129, 0.15);
+      color: #10B981;
+      border: 1px solid rgba(16, 185, 129, 0.3);
     }
 
     .course-title {
       font-size: 1.15rem;
       font-weight: 700;
-      color: var(--text-primary);
-      margin-bottom: 10px;
+      color: #fff;
+      margin-bottom: 8px;
       line-height: 1.35;
     }
 
-    .course-desc {
+    .course-description {
       font-size: 0.875rem;
       color: var(--text-secondary);
-      line-height: 1.5;
-      margin-bottom: 18px;
+      margin-bottom: 16px;
       display: -webkit-box;
       -webkit-line-clamp: 3;
       -webkit-box-orient: vertical;
       overflow: hidden;
+      line-height: 1.5;
     }
 
-    .course-meta {
+    .course-details-row {
       display: flex;
-      flex-wrap: wrap;
-      gap: 14px;
+      flex-direction: column;
+      gap: 6px;
       font-size: 0.8rem;
       color: var(--text-muted);
-      border-top: 1px solid var(--border-color);
       padding-top: 14px;
-      margin-bottom: 18px;
+      border-top: 1px solid var(--border-color);
+      margin-bottom: 16px;
     }
 
-    .meta-item {
-      display: inline-flex;
+    .detail-item {
+      display: flex;
       align-items: center;
       gap: 6px;
     }
 
-    .meta-item svg {
-      width: 15px;
-      height: 15px;
+    .detail-item strong {
       color: var(--text-secondary);
     }
 
     .card-footer {
       display: flex;
-      justify-content: space-between;
-      align-items: center;
+      justify-content: flex-end;
+      gap: 8px;
       padding-top: 14px;
       border-top: 1px solid var(--border-color);
     }
 
-    .course-price {
-      font-size: 1.1rem;
-      font-weight: 800;
-      color: #fff;
-    }
-
-    .course-price.free {
-      color: var(--success);
-    }
-
-    .card-actions {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    /* Table View */
+    /* Course Table View */
     .table-container {
       background: var(--bg-card);
       backdrop-filter: blur(12px);
@@ -589,35 +618,7 @@
       background: rgba(255, 255, 255, 0.02);
     }
 
-    /* Empty & Loading States */
-    .empty-state {
-      text-align: center;
-      padding: 60px 20px;
-      background: var(--bg-card);
-      border: 1px dashed var(--border-color);
-      border-radius: var(--radius-lg);
-    }
-
-    .empty-state svg {
-      width: 56px;
-      height: 56px;
-      color: var(--text-muted);
-      margin-bottom: 16px;
-    }
-
-    .empty-state h3 {
-      font-size: 1.25rem;
-      margin-bottom: 8px;
-      color: var(--text-primary);
-    }
-
-    .empty-state p {
-      color: var(--text-secondary);
-      font-size: 0.9rem;
-      max-width: 440px;
-      margin: 0 auto 20px auto;
-    }
-
+    /* Spinner / Loader */
     .loader-container {
       display: flex;
       flex-direction: column;
@@ -628,9 +629,9 @@
     }
 
     .spinner {
-      width: 40px;
-      height: 40px;
-      border: 3px solid rgba(99, 102, 241, 0.2);
+      width: 44px;
+      height: 44px;
+      border: 4px solid rgba(139, 92, 246, 0.2);
       border-radius: 50%;
       border-top-color: var(--primary);
       animation: spin 0.8s linear infinite;
@@ -640,13 +641,39 @@
       to { transform: rotate(360deg); }
     }
 
-    /* Modals */
+    /* Empty state */
+    .empty-state {
+      text-align: center;
+      padding: 60px 20px;
+      background: var(--bg-card);
+      border: 1px dashed var(--border-color);
+      border-radius: var(--radius-lg);
+    }
+
+    .empty-state svg {
+      width: 48px;
+      height: 48px;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+    }
+
+    .empty-state h3 {
+      font-size: 1.2rem;
+      margin-bottom: 6px;
+    }
+
+    .empty-state p {
+      color: var(--text-secondary);
+      font-size: 0.875rem;
+    }
+
+    /* Modal for API Configuration */
     .modal-overlay {
       position: fixed;
       inset: 0;
-      background: rgba(0, 0, 0, 0.7);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
+      background: rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -667,320 +694,212 @@
       border: 1px solid var(--border-color);
       border-radius: var(--radius-lg);
       width: 100%;
-      max-width: 580px;
-      max-height: 90vh;
-      overflow-y: auto;
+      max-width: 460px;
+      padding: 24px;
       box-shadow: var(--shadow-lg);
-      transform: scale(0.95) translateY(10px);
-      transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    .modal-overlay.active .modal-dialog {
-      transform: scale(1) translateY(0);
     }
 
     .modal-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 20px 24px;
-      border-bottom: 1px solid var(--border-color);
+      margin-bottom: 16px;
     }
 
-    .modal-header h2 {
-      font-size: 1.25rem;
-      font-weight: 700;
-    }
-
-    .modal-body {
-      padding: 24px;
+    .modal-header h3 {
+      font-size: 1.15rem;
+      color: #fff;
     }
 
     .modal-footer {
       display: flex;
       justify-content: flex-end;
-      gap: 12px;
-      padding: 16px 24px;
-      border-top: 1px solid var(--border-color);
-      background: rgba(0, 0, 0, 0.2);
-    }
-
-    .form-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px;
-    }
-
-    .form-grid .full-width {
-      grid-column: 1 / -1;
-    }
-
-    .form-group {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
-
-    .form-group label {
-      font-size: 0.8rem;
-      font-weight: 600;
-      color: var(--text-secondary);
-    }
-
-    .form-group label .required {
-      color: var(--danger);
-    }
-
-    .form-input, .form-textarea, .form-select {
-      width: 100%;
-      padding: 10px 14px;
-      background: var(--bg-input);
-      border: 1px solid var(--border-color);
-      border-radius: var(--radius-md);
-      color: var(--text-primary);
-      font-size: 0.875rem;
-      font-family: inherit;
-      outline: none;
-      transition: var(--transition);
-    }
-
-    .form-textarea {
-      resize: vertical;
-      min-height: 85px;
-    }
-
-    .form-input:focus, .form-textarea:focus, .form-select:focus {
-      border-color: var(--border-focus);
-      box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
-    }
-
-    .form-hint {
-      font-size: 0.75rem;
-      color: var(--text-muted);
-    }
-
-    /* Toast Notification Container */
-    .toast-container {
-      position: fixed;
-      bottom: 24px;
-      right: 24px;
-      display: flex;
-      flex-direction: column;
       gap: 10px;
-      z-index: 2000;
-      pointer-events: none;
+      margin-top: 20px;
     }
 
-    .toast {
-      background: var(--bg-secondary);
-      border: 1px solid var(--border-color);
-      border-radius: var(--radius-md);
-      padding: 14px 18px;
-      color: var(--text-primary);
-      font-size: 0.875rem;
-      box-shadow: var(--shadow-lg);
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      pointer-events: auto;
-      animation: slideInRight 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-      max-width: 400px;
-    }
-
-    .toast.success { border-left: 4px solid var(--success); }
-    .toast.error { border-left: 4px solid var(--danger); }
-    .toast.info { border-left: 4px solid var(--info); }
-    .toast.warning { border-left: 4px solid var(--warning); }
-
-    @keyframes slideInRight {
-      from { transform: translateX(100%); opacity: 0; }
-      to { transform: translateX(0); opacity: 1; }
+    /* Delete Confirmation Modal */
+    #deleteConfirmModal .modal-dialog {
+      max-width: 420px;
     }
 
     /* Responsive */
     @media (max-width: 768px) {
-      .container { padding: 16px; }
-      header.navbar { flex-direction: column; gap: 16px; align-items: flex-start; }
-      .navbar-actions { width: 100%; justify-content: space-between; }
-      .form-grid { grid-template-columns: 1fr; }
+      body { padding: 16px 10px; }
+      header.header { flex-direction: column; align-items: flex-start; }
+      .list-controls { flex-direction: column; align-items: stretch; }
+      .search-filter-row { width: 100%; }
+      .search-box { flex: 1; }
       .courses-grid { grid-template-columns: 1fr; }
-      .action-bar { flex-direction: column; align-items: stretch; }
-      .search-filter-group { flex-direction: column; width: 100%; }
     }
   </style>
 </head>
 <body>
 
   <div class="container">
-    <!-- Navbar -->
-    <header class="navbar">
-      <a href="#" class="brand">
-        <div class="brand-icon">
+    <!-- Header with required text per lab specification -->
+    <header class="header">
+      <div class="header-branding">
+        <div class="header-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
           </svg>
         </div>
-        <div class="brand-text">
-          <h1>CodeCraftHub</h1>
-          <p>Personalized Learning Platform & Course Manager</p>
+        <div>
+          <!-- Exact Title per Lab prompt requirement -->
+          <h1 class="header-title" id="headerTitle">CodeCraftHub: Your Learning Management Platform</h1>
+          <p class="header-subtitle">CRUD Course Management & Learning Goals Tracker</p>
         </div>
-      </a>
+      </div>
 
-      <div class="navbar-actions">
-        <!-- API Connection Status -->
-        <div class="api-status-badge" id="apiStatusBadge" title="Click to view API settings">
-          <span class="status-dot" id="statusDot"></span>
-          <span id="statusText">Connecting...</span>
-        </div>
-
-        <!-- Add Course Button -->
-        <button class="btn btn-primary" id="openCreateModalBtn">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-            <line x1="12" y1="5" x2="12" y2="19"></line>
-            <line x1="5" y1="12" x2="19" y2="12"></line>
-          </svg>
-          Add New Course
-        </button>
+      <!-- API Status Pill -->
+      <div class="api-status-pill" id="apiStatusPill" title="Click to configure backend API URL">
+        <span class="status-dot" id="statusDot"></span>
+        <span id="statusText">Connecting...</span>
       </div>
     </header>
 
-    <!-- Platform Stats / KPIs Row -->
-    <section class="stats-grid">
-      <div class="stat-card">
-        <div class="stat-icon-wrapper indigo">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
-            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+    <!-- Global Alert / Messages Container -->
+    <div class="alert-container" id="alertContainer"></div>
+
+    <!-- Add / Edit Course Form at the Top (Required per lab prompt) -->
+    <section class="form-card" id="courseFormSection">
+      <div class="form-card-header">
+        <h2 class="form-card-title" id="formCardTitle">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 5v14M5 12h14"/>
           </svg>
+          Add New Course
+        </h2>
+        <button type="button" class="btn btn-secondary btn-sm" id="cancelEditBtn" style="display: none;">Cancel Edit</button>
+      </div>
+
+      <form id="courseForm">
+        <input type="hidden" id="courseId" value="">
+
+        <div class="form-grid">
+          <!-- Course Name -->
+          <div class="form-group">
+            <label for="courseName">Course Name <span class="required">*</span></label>
+            <input type="text" id="courseName" class="form-input" placeholder="e.g. Python Basics" required>
+          </div>
+
+          <!-- Target Date -->
+          <div class="form-group">
+            <label for="courseTargetDate">Target Completion Date <span class="required">*</span></label>
+            <input type="date" id="courseTargetDate" class="form-input" required>
+          </div>
+
+          <!-- Status Dropdown -->
+          <div class="form-group">
+            <label for="courseStatus">Status <span class="required">*</span></label>
+            <select id="courseStatus" class="form-select" required>
+              <option value="Not Started">Not Started</option>
+              <option value="In Progress">In Progress</option>
+              <option value="Completed">Completed</option>
+            </select>
+          </div>
+
+          <!-- Description -->
+          <div class="form-group full-width">
+            <label for="courseDescription">Description <span class="required">*</span></label>
+            <textarea id="courseDescription" class="form-textarea" placeholder="Detailed summary of course objectives and curriculum..." required></textarea>
+          </div>
         </div>
-        <div class="stat-content">
-          <h3 id="statTotalCourses">-</h3>
+
+        <div class="form-actions">
+          <button type="submit" class="btn btn-primary" id="submitBtn">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/>
+              <polyline points="17 21 17 13 7 13 7 21"/>
+              <polyline points="7 3 7 8 15 8"/>
+            </svg>
+            <span id="submitBtnText">Add Course</span>
+          </button>
+        </div>
+      </form>
+    </section>
+
+    <!-- Statistics Strip -->
+    <section class="stats-strip">
+      <div class="stat-box">
+        <div class="stat-box-content">
           <p>Total Courses</p>
+          <h3 id="statTotal">-</h3>
         </div>
       </div>
-
-      <div class="stat-card">
-        <div class="stat-icon-wrapper emerald">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
-            <polyline points="22 4 12 14.01 9 11.01"/>
-          </svg>
-        </div>
-        <div class="stat-content">
-          <h3 id="statPublishedCourses">-</h3>
-          <p>Published Courses</p>
+      <div class="stat-box">
+        <div class="stat-box-content">
+          <p>Not Started</p>
+          <h3 id="statNotStarted" style="color: #94A3B8;">-</h3>
         </div>
       </div>
-
-      <div class="stat-card">
-        <div class="stat-icon-wrapper amber">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M12 20h9"/>
-            <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>
-          </svg>
-        </div>
-        <div class="stat-content">
-          <h3 id="statDraftCourses">-</h3>
-          <p>Draft Courses</p>
+      <div class="stat-box">
+        <div class="stat-box-content">
+          <p>In Progress</p>
+          <h3 id="statInProgress" style="color: var(--success);">-</h3>
         </div>
       </div>
-
-      <div class="stat-card">
-        <div class="stat-icon-wrapper slate">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <polyline points="21 8 21 21 3 21 3 8"/>
-            <rect x="1" y="3" width="22" height="5"/>
-            <line x1="10" y1="12" x2="14" y2="12"/>
-          </svg>
-        </div>
-        <div class="stat-content">
-          <h3 id="statArchivedCourses">-</h3>
-          <p>Archived Courses</p>
-        </div>
-      </div>
-
-      <div class="stat-card">
-        <div class="stat-icon-wrapper cyan">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
-            <circle cx="9" cy="7" r="4"/>
-            <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
-            <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
-          </svg>
-        </div>
-        <div class="stat-content">
-          <h3 id="statInstructors">-</h3>
-          <p>Active Instructors</p>
+      <div class="stat-box">
+        <div class="stat-box-content">
+          <p>Completed</p>
+          <h3 id="statCompleted" style="color: #10B981;">-</h3>
         </div>
       </div>
     </section>
 
-    <!-- Search & Filters Toolbar -->
-    <section class="action-bar">
-      <div class="search-filter-group">
-        <!-- Search Input -->
-        <div class="search-input-wrapper">
-          <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+    <!-- Courses List Header & Controls -->
+    <section class="list-controls">
+      <h2 class="list-title">All Course Listings</h2>
+
+      <div class="search-filter-row">
+        <!-- Search Box -->
+        <div class="search-box">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <circle cx="11" cy="11" r="8"/>
             <line x1="21" y1="21" x2="16.65" y2="16.65"/>
           </svg>
-          <input type="text" id="searchInput" class="input-field" placeholder="Search by title, instructor, keyword...">
+          <input type="text" id="searchInput" class="form-input" placeholder="Search courses...">
         </div>
 
-        <!-- Category Filter -->
-        <select id="categoryFilter" class="select-field">
-          <option value="All">All Categories</option>
-          <option value="Web Development">Web Development</option>
-          <option value="AI & Machine Learning">AI & Machine Learning</option>
-          <option value="Cloud Computing">Cloud Computing</option>
-          <option value="Data Science">Data Science</option>
-          <option value="Cybersecurity">Cybersecurity</option>
-          <option value="Mobile Development">Mobile Development</option>
-        </select>
-
         <!-- Status Filter -->
-        <select id="statusFilter" class="select-field">
+        <select id="statusFilter" class="form-select" style="width: auto;">
           <option value="All">All Statuses</option>
-          <option value="Published">Published</option>
-          <option value="Draft">Draft</option>
-          <option value="Archived">Archived</option>
+          <option value="Not Started">Not Started</option>
+          <option value="In Progress">In Progress</option>
+          <option value="Completed">Completed</option>
         </select>
 
-        <!-- Reset Button -->
-        <button class="btn btn-secondary btn-sm" id="resetFiltersBtn" title="Reset all filters">
-          Reset
-        </button>
-      </div>
-
-      <!-- View Switcher -->
-      <div class="view-toggles">
-        <button class="toggle-btn active" id="viewGridBtn" title="Grid View">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <rect x="3" y="3" width="7" height="7"/>
-            <rect x="14" y="3" width="7" height="7"/>
-            <rect x="14" y="14" width="7" height="7"/>
-            <rect x="3" y="14" width="7" height="7"/>
-          </svg>
-        </button>
-        <button class="toggle-btn" id="viewTableBtn" title="Table View">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <line x1="8" y1="6" x2="21" y2="6"/>
-            <line x1="8" y1="12" x2="21" y2="12"/>
-            <line x1="8" y1="18" x2="21" y2="18"/>
-            <line x1="3" y1="6" x2="3.01" y2="6"/>
-            <line x1="3" y1="12" x2="3.01" y2="12"/>
-            <line x1="3" y1="18" x2="3.01" y2="18"/>
-          </svg>
-        </button>
+        <!-- View Switcher -->
+        <div class="view-toggles">
+          <button class="toggle-btn active" id="viewCardBtn" title="Card View">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="3" y="3" width="7" height="7"/>
+              <rect x="14" y="3" width="7" height="7"/>
+              <rect x="14" y="14" width="7" height="7"/>
+              <rect x="3" y="14" width="7" height="7"/>
+            </svg>
+          </button>
+          <button class="toggle-btn" id="viewTableBtn" title="Table View">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="8" y1="6" x2="21" y2="6"/>
+              <line x1="8" y1="12" x2="21" y2="12"/>
+              <line x1="8" y1="18" x2="21" y2="18"/>
+              <line x1="3" y1="6" x2="3.01" y2="6"/>
+              <line x1="3" y1="12" x2="3.01" y2="12"/>
+              <line x1="3" y1="18" x2="3.01" y2="18"/>
+            </svg>
+          </button>
+        </div>
       </div>
     </section>
 
-    <!-- Courses Content Area -->
-    <main id="coursesContent">
+    <!-- Content Area (Card View, Table View, Spinner, Empty State) -->
+    <main id="courseContentArea">
       <!-- Loading Spinner -->
-      <div id="loadingState" class="loader-container">
+      <div id="loadingSpinner" class="loader-container">
         <div class="spinner"></div>
-        <p style="color: var(--text-secondary); font-size: 0.9rem;">Fetching courses from CodeCraftHub API...</p>
+        <p style="color: var(--text-secondary); font-size: 0.9rem;">Connecting to CodeCraftHub API...</p>
       </div>
 
       <!-- Empty State -->
@@ -988,26 +907,24 @@
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
           <path d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
         </svg>
-        <h3>No courses found</h3>
-        <p>No course listings matched your search criteria or the database is currently empty.</p>
-        <button class="btn btn-primary btn-sm" id="emptyAddCourseBtn">+ Create Course</button>
+        <h3>No Courses Found</h3>
+        <p>Use the form above to add your first course to CodeCraftHub.</p>
       </div>
 
-      <!-- Grid View Container -->
-      <div id="coursesGrid" class="courses-grid" style="display: none;"></div>
+      <!-- Cards Grid View -->
+      <div id="coursesCardGrid" class="courses-grid" style="display: none;"></div>
 
-      <!-- Table View Container -->
+      <!-- Table View -->
       <div id="coursesTableContainer" class="table-container" style="display: none;">
         <table class="courses-table">
           <thead>
             <tr>
-              <th>Title</th>
-              <th>Category</th>
-              <th>Instructor</th>
-              <th>Duration</th>
-              <th>Level</th>
+              <th>ID</th>
+              <th>Course Name</th>
+              <th>Description</th>
+              <th>Target Date</th>
               <th>Status</th>
-              <th>Price</th>
+              <th>Created At</th>
               <th style="text-align: right;">Actions</th>
             </tr>
           </thead>
@@ -1017,274 +934,131 @@
     </main>
   </div>
 
-  <!-- ========================================================================
-       MODALS
-       ======================================================================== -->
-
-  <!-- Create / Edit Course Modal -->
-  <div class="modal-overlay" id="courseModal">
+  <!-- API URL Configuration Modal -->
+  <div class="modal-overlay" id="apiModal">
     <div class="modal-dialog">
       <div class="modal-header">
-        <h2 id="modalTitle">Create New Course</h2>
-        <button class="btn-icon" id="closeCourseModalBtn" aria-label="Close modal">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <line x1="18" y1="6" x2="6" y2="18"></line>
-            <line x1="6" y1="6" x2="18" y2="18"></line>
-          </svg>
-        </button>
+        <h3>Backend API Configuration</h3>
+        <button class="alert-close" id="closeApiModalBtn">&times;</button>
       </div>
-      <form id="courseForm">
-        <div class="modal-body">
-          <input type="hidden" id="courseId">
-
-          <div class="form-grid">
-            <!-- Title -->
-            <div class="form-group full-width">
-              <label for="formTitle">Course Title <span class="required">*</span></label>
-              <input type="text" id="formTitle" class="form-input" placeholder="e.g. Master Web Development with React" required minlength="3">
-              <span class="form-hint">At least 3 characters.</span>
-            </div>
-
-            <!-- Instructor -->
-            <div class="form-group">
-              <label for="formInstructor">Instructor <span class="required">*</span></label>
-              <input type="text" id="formInstructor" class="form-input" placeholder="e.g. Dr. Jane Smith" required minlength="2">
-            </div>
-
-            <!-- Category -->
-            <div class="form-group">
-              <label for="formCategory">Category <span class="required">*</span></label>
-              <select id="formCategory" class="form-select" required>
-                <option value="Web Development">Web Development</option>
-                <option value="AI & Machine Learning">AI & Machine Learning</option>
-                <option value="Cloud Computing">Cloud Computing</option>
-                <option value="Data Science">Data Science</option>
-                <option value="Cybersecurity">Cybersecurity</option>
-                <option value="Mobile Development">Mobile Development</option>
-              </select>
-            </div>
-
-            <!-- Duration -->
-            <div class="form-group">
-              <label for="formDuration">Duration <span class="required">*</span></label>
-              <input type="text" id="formDuration" class="form-input" placeholder="e.g. 8 weeks or 40 hours" required>
-            </div>
-
-            <!-- Level -->
-            <div class="form-group">
-              <label for="formLevel">Skill Level</label>
-              <select id="formLevel" class="form-select">
-                <option value="Beginner">Beginner</option>
-                <option value="Intermediate">Intermediate</option>
-                <option value="Advanced">Advanced</option>
-              </select>
-            </div>
-
-            <!-- Status Enum -->
-            <div class="form-group">
-              <label for="formStatus">Status (Enum) <span class="required">*</span></label>
-              <select id="formStatus" class="form-select" required>
-                <option value="Published">Published</option>
-                <option value="Draft">Draft</option>
-                <option value="Archived">Archived</option>
-              </select>
-            </div>
-
-            <!-- Price -->
-            <div class="form-group">
-              <label for="formPrice">Price ($ USD)</label>
-              <input type="number" id="formPrice" class="form-input" placeholder="0.00" step="0.01" min="0">
-              <span class="form-hint">Enter 0 for free courses.</span>
-            </div>
-
-            <!-- Description -->
-            <div class="form-group full-width">
-              <label for="formDescription">Description <span class="required">*</span></label>
-              <textarea id="formDescription" class="form-textarea" placeholder="Provide a detailed overview of the curriculum and learning outcomes..." required minlength="10"></textarea>
-              <span class="form-hint">Minimum 10 characters.</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" id="cancelCourseBtn">Cancel</button>
-          <button type="submit" class="btn btn-primary" id="saveCourseBtn">Save Course</button>
-        </div>
-      </form>
+      <div class="form-group">
+        <label for="apiUrlInput">API Base URL</label>
+        <input type="text" id="apiUrlInput" class="form-input" value="http://localhost:5000">
+        <span style="font-size: 0.75rem; color: var(--text-muted); margin-top: 4px;">
+          Default is http://localhost:5000 (auto-detects port 5001 if 5000 is occupied).
+        </span>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary btn-sm" id="cancelApiBtn">Cancel</button>
+        <button type="button" class="btn btn-primary btn-sm" id="saveApiBtn">Save & Reconnect</button>
+      </div>
     </div>
   </div>
 
   <!-- Delete Confirmation Modal -->
   <div class="modal-overlay" id="deleteModal">
-    <div class="modal-dialog" style="max-width: 440px;">
+    <div class="modal-dialog">
       <div class="modal-header">
-        <h2>Confirm Course Deletion</h2>
-        <button class="btn-icon" id="closeDeleteModalBtn" aria-label="Close modal">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <line x1="18" y1="6" x2="6" y2="18"></line>
-            <line x1="6" y1="6" x2="18" y2="18"></line>
-          </svg>
-        </button>
+        <h3>Confirm Deletion</h3>
+        <button class="alert-close" id="closeDeleteModalBtn">&times;</button>
       </div>
-      <div class="modal-body">
-        <p style="color: var(--text-secondary); margin-bottom: 12px;">Are you sure you want to delete this course from CodeCraftHub? This action cannot be undone.</p>
-        <div style="padding: 12px; background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.3); border-radius: var(--radius-md);">
-          <strong id="deleteCourseTitle" style="color: #fca5a5;">Course Title</strong>
-        </div>
+      <p style="color: var(--text-secondary); margin-bottom: 14px; font-size: 0.9rem;">
+        Are you sure you want to delete this course?
+      </p>
+      <div style="background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.3); padding: 12px; border-radius: var(--radius-md); margin-bottom: 16px;">
+        <strong id="deleteTargetTitle" style="color: #FCA5A5;">-</strong>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" id="cancelDeleteBtn">Cancel</button>
-        <button type="button" class="btn btn-danger" id="confirmDeleteBtn">Delete Course</button>
+        <button type="button" class="btn btn-secondary btn-sm" id="cancelDeleteBtn">Cancel</button>
+        <button type="button" class="btn btn-danger btn-sm" id="confirmDeleteBtn">Delete</button>
       </div>
     </div>
   </div>
-
-  <!-- Course Details Modal -->
-  <div class="modal-overlay" id="detailsModal">
-    <div class="modal-dialog" style="max-width: 600px;">
-      <div class="modal-header">
-        <h2 id="detailsTitle">Course Details</h2>
-        <button class="btn-icon" id="closeDetailsModalBtn" aria-label="Close modal">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <line x1="18" y1="6" x2="6" y2="18"></line>
-            <line x1="6" y1="6" x2="18" y2="18"></line>
-          </svg>
-        </button>
-      </div>
-      <div class="modal-body" id="detailsBody">
-        <!-- Rendered dynamically -->
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" id="closeDetailsBtn">Close</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- API Settings Modal -->
-  <div class="modal-overlay" id="apiModal">
-    <div class="modal-dialog" style="max-width: 480px;">
-      <div class="modal-header">
-        <h2>Backend API Connection</h2>
-        <button class="btn-icon" id="closeApiModalBtn" aria-label="Close modal">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <line x1="18" y1="6" x2="6" y2="18"></line>
-            <line x1="6" y1="6" x2="18" y2="18"></line>
-          </svg>
-        </button>
-      </div>
-      <div class="modal-body">
-        <div class="form-group">
-          <label for="apiUrlInput">API Base URL</label>
-          <input type="text" id="apiUrlInput" class="form-input" value="http://localhost:5001">
-          <span class="form-hint">Change if running on a custom port (e.g. http://localhost:5000 or http://localhost:5001).</span>
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" id="cancelApiBtn">Cancel</button>
-        <button type="button" class="btn btn-primary" id="saveApiBtn">Save & Reconnect</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- Toast Notification Container -->
-  <div class="toast-container" id="toastContainer"></div>
 
   <!-- ========================================================================
-       JAVASCRIPT APPLICATION LOGIC
+       Vanilla JavaScript Logic (Strictly No Frameworks)
        ======================================================================== -->
   <script>
     (function () {
       'use strict';
 
       // Application State
-      let API_BASE_URL = localStorage.getItem('codecraft_api_url') || 'http://localhost:5001';
+      let API_BASE_URL = localStorage.getItem('codecraft_api_url') || 'http://localhost:5000';
       let courses = [];
-      let currentView = 'grid'; // 'grid' or 'table'
-      let deleteTargetId = null;
+      let currentView = 'card'; // 'card' or 'table'
+      let courseToDelete = null;
 
       // DOM Elements
-      const apiStatusBadge = document.getElementById('apiStatusBadge');
+      const apiStatusPill = document.getElementById('apiStatusPill');
       const statusDot = document.getElementById('statusDot');
       const statusText = document.getElementById('statusText');
-      
-      const statTotalCourses = document.getElementById('statTotalCourses');
-      const statPublishedCourses = document.getElementById('statPublishedCourses');
-      const statDraftCourses = document.getElementById('statDraftCourses');
-      const statArchivedCourses = document.getElementById('statArchivedCourses');
-      const statInstructors = document.getElementById('statInstructors');
+      const alertContainer = document.getElementById('alertContainer');
+
+      const courseFormSection = document.getElementById('courseFormSection');
+      const formCardTitle = document.getElementById('formCardTitle');
+      const courseForm = document.getElementById('courseForm');
+      const courseIdInput = document.getElementById('courseId');
+      const courseNameInput = document.getElementById('courseName');
+      const courseTargetDateInput = document.getElementById('courseTargetDate');
+      const courseStatusInput = document.getElementById('courseStatus');
+      const courseDescriptionInput = document.getElementById('courseDescription');
+      const submitBtnText = document.getElementById('submitBtnText');
+      const cancelEditBtn = document.getElementById('cancelEditBtn');
+
+      const statTotal = document.getElementById('statTotal');
+      const statNotStarted = document.getElementById('statNotStarted');
+      const statInProgress = document.getElementById('statInProgress');
+      const statCompleted = document.getElementById('statCompleted');
 
       const searchInput = document.getElementById('searchInput');
-      const categoryFilter = document.getElementById('categoryFilter');
       const statusFilter = document.getElementById('statusFilter');
-      const resetFiltersBtn = document.getElementById('resetFiltersBtn');
-      const viewGridBtn = document.getElementById('viewGridBtn');
+      const viewCardBtn = document.getElementById('viewCardBtn');
       const viewTableBtn = document.getElementById('viewTableBtn');
 
-      const loadingState = document.getElementById('loadingState');
+      const loadingSpinner = document.getElementById('loadingSpinner');
       const emptyState = document.getElementById('emptyState');
-      const coursesGrid = document.getElementById('coursesGrid');
+      const coursesCardGrid = document.getElementById('coursesCardGrid');
       const coursesTableContainer = document.getElementById('coursesTableContainer');
       const coursesTableBody = document.getElementById('coursesTableBody');
 
-      // Modals
-      const courseModal = document.getElementById('courseModal');
-      const modalTitle = document.getElementById('modalTitle');
-      const courseForm = document.getElementById('courseForm');
-      const courseIdInput = document.getElementById('courseId');
-      const formTitle = document.getElementById('formTitle');
-      const formInstructor = document.getElementById('formInstructor');
-      const formCategory = document.getElementById('formCategory');
-      const formDuration = document.getElementById('formDuration');
-      const formLevel = document.getElementById('formLevel');
-      const formStatus = document.getElementById('formStatus');
-      const formPrice = document.getElementById('formPrice');
-      const formDescription = document.getElementById('formDescription');
-
-      const deleteModal = document.getElementById('deleteModal');
-      const deleteCourseTitle = document.getElementById('deleteCourseTitle');
-      const confirmDeleteBtn = document.getElementById('confirmDeleteBtn');
-
-      const detailsModal = document.getElementById('detailsModal');
-      const detailsTitle = document.getElementById('detailsTitle');
-      const detailsBody = document.getElementById('detailsBody');
-
       const apiModal = document.getElementById('apiModal');
       const apiUrlInput = document.getElementById('apiUrlInput');
+      const closeApiModalBtn = document.getElementById('closeApiModalBtn');
+      const cancelApiBtn = document.getElementById('cancelApiBtn');
       const saveApiBtn = document.getElementById('saveApiBtn');
 
-      const toastContainer = document.getElementById('toastContainer');
+      const deleteModal = document.getElementById('deleteModal');
+      const deleteTargetTitle = document.getElementById('deleteTargetTitle');
+      const closeDeleteModalBtn = document.getElementById('closeDeleteModalBtn');
+      const cancelDeleteBtn = document.getElementById('cancelDeleteBtn');
+      const confirmDeleteBtn = document.getElementById('confirmDeleteBtn');
 
       // -----------------------------------------------------------------------
-      // Toast System
+      // UI Messages / Alerts
       // -----------------------------------------------------------------------
-      function showToast(message, type = 'info') {
-        const toast = document.createElement('div');
-        toast.className = `toast ${type}`;
-        
-        let iconSvg = '';
-        if (type === 'success') {
-          iconSvg = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>';
-        } else if (type === 'error') {
-          iconSvg = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>';
-        } else {
-          iconSvg = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6366f1" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>';
-        }
+      function showAlert(message, type = 'info') {
+        const alert = document.createElement('div');
+        alert.className = `alert ${type}`;
+        alert.innerHTML = `
+          <span>${escapeHtml(message)}</span>
+          <button class="alert-close">&times;</button>
+        `;
+        alertContainer.appendChild(alert);
 
-        toast.innerHTML = `${iconSvg}<span>${escapeHtml(message)}</span>`;
-        toastContainer.appendChild(toast);
+        alert.querySelector('.alert-close').addEventListener('click', () => {
+          alert.remove();
+        });
 
         setTimeout(() => {
-          toast.style.opacity = '0';
-          toast.style.transform = 'translateX(100%)';
-          toast.style.transition = 'all 0.3s ease';
-          setTimeout(() => toast.remove(), 300);
-        }, 4000);
+          alert.style.opacity = '0';
+          alert.style.transition = 'opacity 0.3s ease';
+          setTimeout(() => alert.remove(), 300);
+        }, 4500);
       }
 
-      // Helper: Escape HTML to prevent XSS
-      function escapeHtml(text) {
-        if (!text) return '';
-        return String(text)
+      function escapeHtml(str) {
+        if (!str) return '';
+        return String(str)
           .replace(/&/g, '&amp;')
           .replace(/</g, '&lt;')
           .replace(/>/g, '&gt;')
@@ -1293,107 +1067,110 @@
       }
 
       // -----------------------------------------------------------------------
-      // API Health Check & Connection Indicator
+      // Backend Port Auto-Detection & Connection Check
       // -----------------------------------------------------------------------
-      async function checkApiHealth() {
-        try {
-          const res = await fetch(`${API_BASE_URL}/api/health`, { method: 'GET' });
-          if (res.ok) {
-            statusDot.className = 'status-dot online';
-            statusText.textContent = 'API Connected';
-            return true;
+      async function detectAndCheckApi() {
+        const portsToTry = [API_BASE_URL, 'http://localhost:5000', 'http://localhost:5001'];
+        for (const url of portsToTry) {
+          try {
+            const res = await fetch(`${url}/api/health`, { method: 'GET' });
+            if (res.ok) {
+              API_BASE_URL = url;
+              localStorage.setItem('codecraft_api_url', url);
+              statusDot.className = 'status-dot online';
+              statusText.textContent = `Connected (${url.replace('http://localhost:', ':')})`;
+              return true;
+            }
+          } catch (e) {
+            // Continue to next port
           }
-          throw new Error('Health check returned non-200');
-        } catch (e) {
-          statusDot.className = 'status-dot offline';
-          statusText.textContent = 'API Disconnected';
-          return false;
         }
+
+        statusDot.className = 'status-dot offline';
+        statusText.textContent = 'Disconnected';
+        return false;
       }
 
       // -----------------------------------------------------------------------
-      // Fetch Statistics from /api/stats
+      // Fetch Statistics (/api/courses/stats)
       // -----------------------------------------------------------------------
       async function loadStats() {
         try {
-          const res = await fetch(`${API_BASE_URL}/api/stats`);
+          const res = await fetch(`${API_BASE_URL}/api/courses/stats`);
           if (res.ok) {
-            const result = await res.json();
-            const s = result.data;
-            statTotalCourses.textContent = s.totalCourses ?? 0;
-            statPublishedCourses.textContent = s.byStatus?.Published ?? 0;
-            statDraftCourses.textContent = s.byStatus?.Draft ?? 0;
-            statArchivedCourses.textContent = s.byStatus?.Archived ?? 0;
-            statInstructors.textContent = s.totalInstructors ?? 0;
+            const json = await res.json();
+            const data = json.data || {};
+            const byStatus = data.by_status || data.byStatus || {};
+            statTotal.textContent = data.total ?? data.totalCourses ?? courses.length;
+            statNotStarted.textContent = byStatus['Not Started'] ?? 0;
+            statInProgress.textContent = byStatus['In Progress'] ?? 0;
+            statCompleted.textContent = byStatus['Completed'] ?? 0;
+            return;
           }
-        } catch (err) {
-          console.warn('Could not load /api/stats directly, falling back to local computation:', err);
-          computeStatsLocally();
+        } catch (e) {
+          // Fallback to local computation
         }
-      }
 
-      function computeStatsLocally() {
+        // Local calculation fallback
         const total = courses.length;
-        const published = courses.filter(c => c.status === 'Published').length;
-        const draft = courses.filter(c => c.status === 'Draft').length;
-        const archived = courses.filter(c => c.status === 'Archived').length;
-        const instructors = new Set(courses.map(c => c.instructor)).size;
+        const notStarted = courses.filter(c => (c.status || '').toLowerCase() === 'not started').length;
+        const inProgress = courses.filter(c => (c.status || '').toLowerCase() === 'in progress').length;
+        const completed = courses.filter(c => (c.status || '').toLowerCase() === 'completed').length;
 
-        statTotalCourses.textContent = total;
-        statPublishedCourses.textContent = published;
-        statDraftCourses.textContent = draft;
-        statArchivedCourses.textContent = archived;
-        statInstructors.textContent = instructors;
+        statTotal.textContent = total;
+        statNotStarted.textContent = notStarted;
+        statInProgress.textContent = inProgress;
+        statCompleted.textContent = completed;
       }
 
       // -----------------------------------------------------------------------
-      // Fetch Courses (CRUD: Read All with optional query params)
+      // GET /api/courses - Read All Courses
       // -----------------------------------------------------------------------
       async function loadCourses() {
-        loadingState.style.display = 'flex';
+        loadingSpinner.style.display = 'flex';
         emptyState.style.display = 'none';
-        coursesGrid.style.display = 'none';
+        coursesCardGrid.style.display = 'none';
         coursesTableContainer.style.display = 'none';
 
-        const params = new URLSearchParams();
-        const searchVal = searchInput.value.trim();
-        const catVal = categoryFilter.value;
-        const statusVal = statusFilter.value;
-
-        if (searchVal) params.append('search', searchVal);
-        if (catVal && catVal !== 'All') params.append('category', catVal);
-        if (statusVal && statusVal !== 'All') params.append('status', statusVal);
-
-        const url = `${API_BASE_URL}/api/courses${params.toString() ? '?' + params.toString() : ''}`;
+        const isOnline = await detectAndCheckApi();
+        if (!isOnline) {
+          showAlert(`Could not connect to backend at ${API_BASE_URL}. Please ensure 'npm start' is running in backend.`, 'error');
+        }
 
         try {
-          const isHealthy = await checkApiHealth();
-          if (!isHealthy) {
-            showToast(`Cannot reach backend at ${API_BASE_URL}. Ensure server is running.`, 'error');
-          }
+          const queryParams = new URLSearchParams();
+          const searchVal = searchInput.value.trim();
+          const statusVal = statusFilter.value;
 
+          if (searchVal) queryParams.append('search', searchVal);
+          if (statusVal && statusVal !== 'All') queryParams.append('status', statusVal);
+
+          const url = `${API_BASE_URL}/api/courses${queryParams.toString() ? '?' + queryParams.toString() : ''}`;
           const res = await fetch(url);
+          
           if (!res.ok) {
             const errData = await res.json().catch(() => ({}));
-            throw new Error(errData.message || `Server error (${res.status})`);
+            throw new Error(errData.error || `Server responded with status ${res.status}`);
           }
 
-          const responseData = await res.json();
-          courses = Array.isArray(responseData.data) ? responseData.data : [];
+          const resData = await res.json();
+          courses = Array.isArray(resData.courses) 
+            ? resData.courses 
+            : (Array.isArray(resData.data) ? resData.data : []);
 
           renderCourses();
           loadStats();
-        } catch (err) {
-          console.error('Fetch error:', err);
-          showToast(`Error loading courses: ${err.message}`, 'error');
+        } catch (error) {
+          console.error('Error fetching courses:', error);
+          showAlert(`Failed to fetch courses: ${error.message}`, 'error');
           renderEmptyState();
         } finally {
-          loadingState.style.display = 'none';
+          loadingSpinner.style.display = 'none';
         }
       }
 
       // -----------------------------------------------------------------------
-      // Rendering Logic (Cards or Table)
+      // Rendering Courses (Card or Table)
       // -----------------------------------------------------------------------
       function renderCourses() {
         if (!courses || courses.length === 0) {
@@ -1403,294 +1180,141 @@
 
         emptyState.style.display = 'none';
 
-        if (currentView === 'grid') {
-          coursesGrid.style.display = 'grid';
+        if (currentView === 'card') {
+          coursesCardGrid.style.display = 'grid';
           coursesTableContainer.style.display = 'none';
-          renderGridView();
+          renderCards();
         } else {
-          coursesGrid.style.display = 'none';
+          coursesCardGrid.style.display = 'none';
           coursesTableContainer.style.display = 'block';
-          renderTableView();
+          renderTable();
         }
       }
 
       function renderEmptyState() {
-        coursesGrid.style.display = 'none';
+        coursesCardGrid.style.display = 'none';
         coursesTableContainer.style.display = 'none';
         emptyState.style.display = 'block';
       }
 
-      function renderGridView() {
-        coursesGrid.innerHTML = courses.map(course => {
-          const statusClass = (course.status || 'Draft').toLowerCase();
-          const priceDisplay = (course.price === 0 || !course.price) 
-            ? '<span class="course-price free">Free</span>' 
-            : `<span class="course-price">$${Number(course.price).toFixed(2)}</span>`;
+      function getStatusBadgeClass(statusStr) {
+        const s = (statusStr || '').toLowerCase().replace(/\s+/g, '-');
+        if (s === 'not-started') return 'not-started';
+        if (s === 'in-progress') return 'in-progress';
+        if (s === 'completed') return 'completed';
+        return 'not-started';
+      }
+
+      function renderCards() {
+        coursesCardGrid.innerHTML = courses.map(course => {
+          const courseName = course.name || course.title || 'Untitled Course';
+          const badgeClass = getStatusBadgeClass(course.status);
+          const targetDateDisplay = course.target_date || 'N/A';
+          const createdAtDisplay = course.created_at || 'N/A';
 
           return `
             <div class="course-card" data-id="${course.id}">
               <div>
-                <div class="card-top">
-                  <span class="category-chip">${escapeHtml(course.category || 'General')}</span>
-                  <span class="status-badge ${statusClass}">
-                    ● ${escapeHtml(course.status || 'Draft')}
-                  </span>
+                <div class="card-meta-top">
+                  <span class="course-id-badge">ID: #${escapeHtml(course.id)}</span>
+                  <span class="status-badge ${badgeClass}">● ${escapeHtml(course.status || 'Not Started')}</span>
                 </div>
-                <h3 class="course-title">${escapeHtml(course.title)}</h3>
-                <p class="course-desc">${escapeHtml(course.description)}</p>
                 
-                <div class="course-meta">
-                  <div class="meta-item">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                      <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
-                      <circle cx="12" cy="7" r="4"/>
-                    </svg>
-                    <span>${escapeHtml(course.instructor || 'Unknown')}</span>
+                <h3 class="course-title">${escapeHtml(courseName)}</h3>
+                <p class="course-description">${escapeHtml(course.description || '')}</p>
+                
+                <div class="course-details-row">
+                  <div class="detail-item">
+                    <strong>Target Date:</strong> <span>${escapeHtml(targetDateDisplay)}</span>
                   </div>
-                  <div class="meta-item">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                      <circle cx="12" cy="12" r="10"/>
-                      <polyline points="12 6 12 12 16 14"/>
-                    </svg>
-                    <span>${escapeHtml(course.duration || 'Flexible')}</span>
-                  </div>
-                  <div class="meta-item">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                      <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
-                    </svg>
-                    <span>${escapeHtml(course.level || 'Beginner')}</span>
+                  <div class="detail-item">
+                    <strong>Created At:</strong> <span>${escapeHtml(createdAtDisplay)}</span>
                   </div>
                 </div>
               </div>
 
               <div class="card-footer">
-                ${priceDisplay}
-                <div class="card-actions">
-                  <button class="btn-icon view-btn" data-id="${course.id}" title="View Details">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                      <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
-                      <circle cx="12" cy="12" r="3"/>
-                    </svg>
-                  </button>
-                  <button class="btn-icon edit-btn" data-id="${course.id}" title="Edit Course">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                      <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
-                      <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
-                    </svg>
-                  </button>
-                  <button class="btn-icon delete-btn" data-id="${course.id}" title="Delete Course" style="color: var(--danger);">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                      <polyline points="3 6 5 6 21 6"/>
-                      <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
-                    </svg>
-                  </button>
-                </div>
+                <button class="btn btn-secondary btn-sm edit-btn" data-id="${course.id}">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
+                    <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
+                  </svg>
+                  Edit
+                </button>
+                <button class="btn btn-danger btn-sm delete-btn" data-id="${course.id}">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="3 6 5 6 21 6"/>
+                    <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
+                  </svg>
+                  Remove
+                </button>
               </div>
             </div>
           `;
         }).join('');
 
-        attachActionListeners();
+        attachButtons();
       }
 
-      function renderTableView() {
+      function renderTable() {
         coursesTableBody.innerHTML = courses.map(course => {
-          const statusClass = (course.status || 'Draft').toLowerCase();
-          const priceDisplay = (course.price === 0 || !course.price) 
-            ? '<span style="color: var(--success); font-weight: 700;">Free</span>' 
-            : `$${Number(course.price).toFixed(2)}`;
+          const courseName = course.name || course.title || 'Untitled Course';
+          const badgeClass = getStatusBadgeClass(course.status);
 
           return `
             <tr>
-              <td>
-                <strong style="color: var(--text-primary); display: block;">${escapeHtml(course.title)}</strong>
-                <span style="font-size: 0.75rem; color: var(--text-muted);">${escapeHtml(course.id)}</span>
-              </td>
-              <td><span class="category-chip">${escapeHtml(course.category || 'General')}</span></td>
-              <td>${escapeHtml(course.instructor || 'Unknown')}</td>
-              <td>${escapeHtml(course.duration || 'N/A')}</td>
-              <td>${escapeHtml(course.level || 'Beginner')}</td>
-              <td>
-                <span class="status-badge ${statusClass}">
-                  ● ${escapeHtml(course.status || 'Draft')}
-                </span>
-              </td>
-              <td>${priceDisplay}</td>
+              <td><span class="course-id-badge">#${escapeHtml(course.id)}</span></td>
+              <td><strong style="color: #fff;">${escapeHtml(courseName)}</strong></td>
+              <td style="max-width: 320px; color: var(--text-secondary);">${escapeHtml(course.description || '')}</td>
+              <td>${escapeHtml(course.target_date || 'N/A')}</td>
+              <td><span class="status-badge ${badgeClass}">● ${escapeHtml(course.status || 'Not Started')}</span></td>
+              <td style="color: var(--text-muted); font-size: 0.8rem;">${escapeHtml(course.created_at || 'N/A')}</td>
               <td style="text-align: right; white-space: nowrap;">
-                <button class="btn-icon view-btn" data-id="${course.id}" title="View Details">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
-                    <circle cx="12" cy="12" r="3"/>
-                  </svg>
-                </button>
-                <button class="btn-icon edit-btn" data-id="${course.id}" title="Edit Course">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
-                    <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
-                  </svg>
-                </button>
-                <button class="btn-icon delete-btn" data-id="${course.id}" title="Delete Course" style="color: var(--danger);">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <polyline points="3 6 5 6 21 6"/>
-                    <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
-                  </svg>
-                </button>
+                <button class="btn btn-secondary btn-sm edit-btn" data-id="${course.id}">Edit</button>
+                <button class="btn btn-danger btn-sm delete-btn" data-id="${course.id}">Remove</button>
               </td>
             </tr>
           `;
         }).join('');
 
-        attachActionListeners();
+        attachButtons();
       }
 
-      function attachActionListeners() {
-        document.querySelectorAll('.view-btn').forEach(btn => {
-          btn.addEventListener('click', () => openDetailsModal(btn.dataset.id));
-        });
+      function attachButtons() {
         document.querySelectorAll('.edit-btn').forEach(btn => {
-          btn.addEventListener('click', () => openEditModal(btn.dataset.id));
+          btn.addEventListener('click', () => startEditCourse(btn.dataset.id));
         });
         document.querySelectorAll('.delete-btn').forEach(btn => {
-          btn.addEventListener('click', () => openDeleteModal(btn.dataset.id));
+          btn.addEventListener('click', () => promptDeleteCourse(btn.dataset.id));
         });
       }
 
       // -----------------------------------------------------------------------
-      // Modal Controls
-      // -----------------------------------------------------------------------
-      function openModal(modalEl) {
-        modalEl.classList.add('active');
-        document.body.style.overflow = 'hidden';
-      }
-
-      function closeModal(modalEl) {
-        modalEl.classList.remove('active');
-        document.body.style.overflow = '';
-      }
-
-      // Open Create Modal
-      function openCreateModal() {
-        modalTitle.textContent = 'Create New Course';
-        courseForm.reset();
-        courseIdInput.value = '';
-        formStatus.value = 'Published';
-        formLevel.value = 'Beginner';
-        formCategory.value = 'Web Development';
-        openModal(courseModal);
-        formTitle.focus();
-      }
-
-      // Open Edit Modal (CRUD: Read one for editing)
-      async function openEditModal(id) {
-        try {
-          const res = await fetch(`${API_BASE_URL}/api/courses/${id}`);
-          if (!res.ok) throw new Error('Could not fetch course details');
-          const result = await res.json();
-          const c = result.data;
-
-          modalTitle.textContent = 'Edit Course';
-          courseIdInput.value = c.id;
-          formTitle.value = c.title || '';
-          formInstructor.value = c.instructor || '';
-          formCategory.value = c.category || 'Web Development';
-          formDuration.value = c.duration || '';
-          formLevel.value = c.level || 'Beginner';
-          formStatus.value = c.status || 'Draft';
-          formPrice.value = c.price !== undefined ? c.price : 0;
-          formDescription.value = c.description || '';
-
-          openModal(courseModal);
-          formTitle.focus();
-        } catch (err) {
-          showToast(`Error: ${err.message}`, 'error');
-        }
-      }
-
-      // Open View Details Modal
-      async function openDetailsModal(id) {
-        try {
-          const res = await fetch(`${API_BASE_URL}/api/courses/${id}`);
-          if (!res.ok) throw new Error('Could not fetch course details');
-          const result = await res.json();
-          const c = result.data;
-
-          detailsTitle.textContent = c.title;
-          const statusClass = (c.status || 'Draft').toLowerCase();
-          const priceText = (c.price === 0 || !c.price) ? 'Free' : `$${Number(c.price).toFixed(2)}`;
-
-          detailsBody.innerHTML = `
-            <div style="display: flex; gap: 10px; align-items: center; margin-bottom: 16px;">
-              <span class="category-chip">${escapeHtml(c.category)}</span>
-              <span class="status-badge ${statusClass}">● ${escapeHtml(c.status)}</span>
-              <span style="margin-left: auto; font-size: 1.1rem; font-weight: 800; color: #fff;">${priceText}</span>
-            </div>
-
-            <div style="margin-bottom: 18px;">
-              <h4 style="font-size: 0.85rem; color: var(--text-secondary); text-transform: uppercase; margin-bottom: 6px;">Description</h4>
-              <p style="color: var(--text-primary); line-height: 1.6; white-space: pre-wrap;">${escapeHtml(c.description)}</p>
-            </div>
-
-            <div class="form-grid" style="background: rgba(255,255,255,0.03); padding: 14px; border-radius: var(--radius-md); border: 1px solid var(--border-color);">
-              <div>
-                <span style="font-size: 0.75rem; color: var(--text-muted); display: block;">Instructor</span>
-                <strong style="color: var(--text-primary);">${escapeHtml(c.instructor)}</strong>
-              </div>
-              <div>
-                <span style="font-size: 0.75rem; color: var(--text-muted); display: block;">Duration</span>
-                <strong style="color: var(--text-primary);">${escapeHtml(c.duration)}</strong>
-              </div>
-              <div>
-                <span style="font-size: 0.75rem; color: var(--text-muted); display: block;">Skill Level</span>
-                <strong style="color: var(--text-primary);">${escapeHtml(c.level || 'Beginner')}</strong>
-              </div>
-              <div>
-                <span style="font-size: 0.75rem; color: var(--text-muted); display: block;">Course ID</span>
-                <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: var(--text-secondary);">${escapeHtml(c.id)}</span>
-              </div>
-            </div>
-
-            <div style="margin-top: 14px; display: flex; justify-content: space-between; font-size: 0.75rem; color: var(--text-muted);">
-              <span>Created: ${new Date(c.createdAt || Date.now()).toLocaleDateString()}</span>
-              <span>Updated: ${new Date(c.updatedAt || Date.now()).toLocaleDateString()}</span>
-            </div>
-          `;
-
-          openModal(detailsModal);
-        } catch (err) {
-          showToast(`Error: ${err.message}`, 'error');
-        }
-      }
-
-      // Open Delete Modal
-      function openDeleteModal(id) {
-        const course = courses.find(c => c.id === id);
-        if (!course) return;
-        deleteTargetId = id;
-        deleteCourseTitle.textContent = course.title;
-        openModal(deleteModal);
-      }
-
-      // -----------------------------------------------------------------------
-      // Form Submission (CRUD: Create or Update)
+      // Form Submission (POST / PUT)
       // -----------------------------------------------------------------------
       courseForm.addEventListener('submit', async (e) => {
         e.preventDefault();
 
         const id = courseIdInput.value.trim();
+        const isEditing = Boolean(id);
+
         const payload = {
-          title: formTitle.value.trim(),
-          instructor: formInstructor.value.trim(),
-          category: formCategory.value,
-          duration: formDuration.value.trim(),
-          level: formLevel.value,
-          status: formStatus.value,
-          price: formPrice.value ? Number(formPrice.value) : 0,
-          description: formDescription.value.trim(),
+          name: courseNameInput.value.trim(),
+          description: courseDescriptionInput.value.trim(),
+          target_date: courseTargetDateInput.value.trim(),
+          status: courseStatusInput.value,
         };
 
-        const isEdit = Boolean(id);
-        const url = isEdit ? `${API_BASE_URL}/api/courses/${id}` : `${API_BASE_URL}/api/courses`;
-        const method = isEdit ? 'PUT' : 'POST';
+        // Client-side validations
+        if (!payload.name || !payload.description || !payload.target_date || !payload.status) {
+          showAlert('Please fill in all required fields.', 'error');
+          return;
+        }
+
+        const url = isEditing ? `${API_BASE_URL}/api/courses/${id}` : `${API_BASE_URL}/api/courses`;
+        const method = isEditing ? 'PUT' : 'POST';
+
+        submitBtnText.textContent = isEditing ? 'Updating...' : 'Adding...';
 
         try {
           const res = await fetch(url, {
@@ -1701,112 +1325,126 @@
 
           const result = await res.json();
           if (!res.ok) {
-            const errDetails = result.details ? result.details.join(', ') : result.message;
-            throw new Error(errDetails || 'Failed to save course');
+            throw new Error(result.error || 'Failed to save course.');
           }
 
-          closeModal(courseModal);
-          showToast(isEdit ? 'Course updated successfully!' : 'Course created successfully!', 'success');
+          showAlert(isEditing ? 'Course updated successfully!' : 'Course added successfully!', 'success');
+          resetForm();
           loadCourses();
-        } catch (err) {
-          showToast(`Error: ${err.message}`, 'error');
+        } catch (error) {
+          console.error('Save error:', error);
+          showAlert(`Error: ${error.message}`, 'error');
+        } finally {
+          submitBtnText.textContent = isEditing ? 'Update Course' : 'Add Course';
         }
       });
 
       // -----------------------------------------------------------------------
-      // Delete Confirmation (CRUD: Delete)
+      // Edit Course Functionality
       // -----------------------------------------------------------------------
+      function startEditCourse(id) {
+        const course = courses.find(c => String(c.id) === String(id));
+        if (!course) return;
+
+        courseIdInput.value = course.id;
+        courseNameInput.value = course.name || course.title || '';
+        courseDescriptionInput.value = course.description || '';
+        courseTargetDateInput.value = course.target_date || '';
+        courseStatusInput.value = course.status || 'Not Started';
+
+        formCardTitle.innerHTML = `
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
+            <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
+          </svg>
+          Edit Course #${course.id}
+        `;
+        submitBtnText.textContent = 'Update Course';
+        cancelEditBtn.style.display = 'inline-flex';
+
+        courseFormSection.scrollIntoView({ behavior: 'smooth' });
+        courseNameInput.focus();
+      }
+
+      function resetForm() {
+        courseForm.reset();
+        courseIdInput.value = '';
+        formCardTitle.innerHTML = `
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 5v14M5 12h14"/>
+          </svg>
+          Add New Course
+        `;
+        submitBtnText.textContent = 'Add Course';
+        cancelEditBtn.style.display = 'none';
+      }
+
+      cancelEditBtn.addEventListener('click', resetForm);
+
+      // -----------------------------------------------------------------------
+      // DELETE /api/courses/{id}
+      // -----------------------------------------------------------------------
+      function promptDeleteCourse(id) {
+        const course = courses.find(c => String(c.id) === String(id));
+        if (!course) return;
+
+        courseToDelete = course;
+        deleteTargetTitle.textContent = `${course.name || course.title} (ID #${course.id})`;
+        deleteModal.classList.add('active');
+      }
+
       confirmDeleteBtn.addEventListener('click', async () => {
-        if (!deleteTargetId) return;
+        if (!courseToDelete) return;
 
         try {
-          const res = await fetch(`${API_BASE_URL}/api/courses/${deleteTargetId}`, {
+          const res = await fetch(`${API_BASE_URL}/api/courses/${courseToDelete.id}`, {
             method: 'DELETE',
           });
 
+          const result = await res.json();
           if (!res.ok) {
-            const errData = await res.json().catch(() => ({}));
-            throw new Error(errData.message || 'Failed to delete course');
+            throw new Error(result.error || 'Failed to delete course.');
           }
 
-          closeModal(deleteModal);
-          showToast('Course deleted successfully.', 'success');
-          deleteTargetId = null;
+          deleteModal.classList.remove('active');
+          showAlert('Course deleted successfully.', 'success');
+          courseToDelete = null;
           loadCourses();
-        } catch (err) {
-          showToast(`Error deleting course: ${err.message}`, 'error');
+        } catch (error) {
+          console.error('Delete error:', error);
+          showAlert(`Error: ${error.message}`, 'error');
         }
       });
 
+      closeDeleteModalBtn.addEventListener('click', () => deleteModal.classList.remove('active'));
+      cancelDeleteBtn.addEventListener('click', () => deleteModal.classList.remove('active'));
+
       // -----------------------------------------------------------------------
-      // Event Listeners for Modals & Toggles
+      // API Configuration Modal
       // -----------------------------------------------------------------------
-      document.getElementById('openCreateModalBtn').addEventListener('click', openCreateModal);
-      document.getElementById('emptyAddCourseBtn').addEventListener('click', openCreateModal);
-      document.getElementById('closeCourseModalBtn').addEventListener('click', () => closeModal(courseModal));
-      document.getElementById('cancelCourseBtn').addEventListener('click', () => closeModal(courseModal));
-
-      document.getElementById('closeDeleteModalBtn').addEventListener('click', () => closeModal(deleteModal));
-      document.getElementById('cancelDeleteBtn').addEventListener('click', () => closeModal(deleteModal));
-
-      document.getElementById('closeDetailsModalBtn').addEventListener('click', () => closeModal(detailsModal));
-      document.getElementById('closeDetailsBtn').addEventListener('click', () => closeModal(detailsModal));
-
-      // API Settings Modal
-      apiStatusBadge.addEventListener('click', () => {
+      apiStatusPill.addEventListener('click', () => {
         apiUrlInput.value = API_BASE_URL;
-        openModal(apiModal);
+        apiModal.classList.add('active');
       });
-      document.getElementById('closeApiModalBtn').addEventListener('click', () => closeModal(apiModal));
-      document.getElementById('cancelApiBtn').addEventListener('click', () => closeModal(apiModal));
+
+      closeApiModalBtn.addEventListener('click', () => apiModal.classList.remove('active'));
+      cancelApiBtn.addEventListener('click', () => apiModal.classList.remove('active'));
+
       saveApiBtn.addEventListener('click', () => {
-        const newUrl = apiUrlInput.value.trim().replace(/\/+$/, '');
-        if (newUrl) {
-          API_BASE_URL = newUrl;
-          localStorage.setItem('codecraft_api_url', newUrl);
-          closeModal(apiModal);
-          showToast(`API URL updated to: ${API_BASE_URL}`, 'info');
+        const url = apiUrlInput.value.trim().replace(/\/+$/, '');
+        if (url) {
+          API_BASE_URL = url;
+          localStorage.setItem('codecraft_api_url', url);
+          apiModal.classList.remove('active');
+          showAlert(`API URL updated to: ${API_BASE_URL}`, 'info');
           loadCourses();
         }
-      });
-
-      // Close modals on escape key or backdrop click
-      window.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') {
-          closeModal(courseModal);
-          closeModal(deleteModal);
-          closeModal(detailsModal);
-          closeModal(apiModal);
-        }
-      });
-
-      [courseModal, deleteModal, detailsModal, apiModal].forEach(overlay => {
-        overlay.addEventListener('click', (e) => {
-          if (e.target === overlay) closeModal(overlay);
-        });
-      });
-
-      // Search & Filters debouncing & listeners
-      let searchTimeout;
-      searchInput.addEventListener('input', () => {
-        clearTimeout(searchTimeout);
-        searchTimeout = setTimeout(loadCourses, 280);
-      });
-
-      categoryFilter.addEventListener('change', loadCourses);
-      statusFilter.addEventListener('change', loadCourses);
-
-      resetFiltersBtn.addEventListener('click', () => {
-        searchInput.value = '';
-        categoryFilter.value = 'All';
-        statusFilter.value = 'All';
-        loadCourses();
       });
 
       // View Toggles
-      viewGridBtn.addEventListener('click', () => {
-        currentView = 'grid';
-        viewGridBtn.classList.add('active');
+      viewCardBtn.addEventListener('click', () => {
+        currentView = 'card';
+        viewCardBtn.classList.add('active');
         viewTableBtn.classList.remove('active');
         renderCourses();
       });
@@ -1814,11 +1452,34 @@
       viewTableBtn.addEventListener('click', () => {
         currentView = 'table';
         viewTableBtn.classList.add('active');
-        viewGridBtn.classList.remove('active');
+        viewCardBtn.classList.remove('active');
         renderCourses();
       });
 
-      // Initial Load
+      // Search & Filter listeners
+      let searchTimer;
+      searchInput.addEventListener('input', () => {
+        clearTimeout(searchTimer);
+        searchTimer = setTimeout(loadCourses, 250);
+      });
+
+      statusFilter.addEventListener('change', loadCourses);
+
+      // Keyboard & backdrop modal closers
+      window.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          apiModal.classList.remove('active');
+          deleteModal.classList.remove('active');
+        }
+      });
+
+      [apiModal, deleteModal].forEach(overlay => {
+        overlay.addEventListener('click', (e) => {
+          if (e.target === overlay) overlay.classList.remove('active');
+        });
+      });
+
+      // Initial execution
       loadCourses();
     })();
   </script>
